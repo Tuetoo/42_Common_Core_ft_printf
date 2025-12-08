@@ -1,0 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jiezhang <jiezhang@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/23 18:16:58 by jiezhang          #+#    #+#             */
+/*   Updated: 2025/10/23 18:27:47 by jiezhang         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+int	ft_atoi(const char *nptr)
+{
+	int	i;
+	int	num;
+	int	sign;
+
+	i = 0;
+	num = 0;
+	sign = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		num = num * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (sign * num);
+}
+/* 
+#include <stdlib.h>
+#include <stdio.h>
+
+int	main(void)
+{
+	char *nptr = "	  -123vai3248";
+	printf("FT: %d\n", ft_atoi(nptr));
+	printf("atoi: %d\n", atoi(nptr));
+} */
