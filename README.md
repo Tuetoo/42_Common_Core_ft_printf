@@ -9,8 +9,9 @@
 ### Version 1 Simple Version (Mandatory Only)
 
 **File Structure**
-ft_printf_project/
-├── ft_printf.h 
+  
+ft_printf_project/   
+├── ft_printf.h   
 ├── ft_printf.c  
 ├── ft_printf_utils.c  
 ├── Makefile  
@@ -27,8 +28,9 @@ This version aims to practice implementing the core features of printf while kee
 ### Version 2: First Try Version (Basis + Bonus with Libft)
 
 **File Structure**
-ft_printf_project/
-├── ft_printf.h                 
+  
+ft_printf_project/   
+├── ft_printf.h                   
 ├── ft_printf.c                 
 ├── ft_putchar_format.c         
 ├── ft_putdigit_format.c        
