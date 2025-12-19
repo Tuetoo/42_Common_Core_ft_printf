@@ -53,7 +53,7 @@ int	ft_printf(const char *format, ...)
 			count += ft_format(format[i], args);
 		}
 		else
-			count += write(1, &format[i++], 1);
+			count += write(1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
