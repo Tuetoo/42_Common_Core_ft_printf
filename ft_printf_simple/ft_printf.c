@@ -18,38 +18,22 @@ static int	ft_format(char c, va_list args)
 
 	count = 0;
 	if (c == 'c')
-		count = ft_putchar(va_arg(args, int));
+		count += ft_putchar(va_arg(args, int));
 	else if (c == 's')
-		count = ft_putstr(va_arg(args, char *));
+		count += ft_putstr(va_arg(args, char *));
 	else if (c == 'p')
-		count = ft_putpointer(va_arg(args, void *));
+		count += ft_putpointer(va_arg(args, void *));
 	else if (c == 'd' || c == 'i')
-		count = ft_putdigit(va_arg(args, int));
+		count += ft_putdigit(va_arg(args, int));
 	else if (c == 'u')
-		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
+		count += ft_putnbr_base(va_arg(args, unsigned int), "0123456789");
 	else if (c == 'x')
-		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef");
+		count += ft_putnbr_base(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		count = ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
+		count += ft_putnbr_base(va_arg(args, unsigned int), "0123456789ABCDEF");
 	else if (c == '%')
-		count = ft_putchar('%');
+		count += ft_putchar('%');
 	return (count);
-}
-
-static char	*ft_strchr(const char *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return ((char *)(s + i));
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)(s + i));
-	return (NULL);
 }
 
 int	ft_printf(const char *format, ...)
@@ -63,13 +47,14 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && ft_strchr("cspdiuxX%", format[i + 1]))
+		if (format[i] == '%' && format[i + 1])
 		{
-			count += ft_format(format[i + 1], args);
-			i += 2;
+			i++;
+			count += ft_format(format[i], args);
 		}
 		else
 			count += write(1, &format[i++], 1);
+		i++;
 	}
 	va_end(args);
 	return (count);
